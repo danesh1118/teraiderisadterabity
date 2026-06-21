@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل V2Ray - نسخه خریداری شده</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4361ee;
+            --success: #06d6a0;
+            --danger: #ef476f;
+            --warning: #ffd166;
+            --gray: #6c757d;
+            --light: #f8f9fa;
+            --premium: linear-gradient(45deg, #f093fb, #f5576c);
+            --copy-all: linear-gradient(135deg, #4361ee, #06d6a0);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            overflow: hidden;
+            font-size: 0.9rem;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            padding: 15px;
+        }
+
+        .compact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .card .value {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin: 8px 0;
+            color: var(--primary);
+        }
+
+        .card .subtext {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .status-active { color: var(--success); }
+
+        .progress-bar {
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--success);
+            border-radius: 3px;
+            width: 0%;
+        }
+
+        .actions-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .btn-small {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-success { background: var(--success); color: white; }
+        .btn-warning { background: var(--warning); color: #333; }
+
+        .btn-premium {
+            padding: 12px 24px;
+            background: var(--premium);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(240, 147, 251, 0.4);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(240, 147, 251, 0.6);
+        }
+
+        .btn-premium i {
+            font-size: 1.3rem;
+        }
+
+        .servers-card {
+            grid-column: 1 / -1;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            font-size: 0.85rem;
+        }
+
+        .flag {
+            width: 24px;
+            height: 16px;
+            border-radius: 3px;
+            vertical-align: middle;
+        }
+
+        .copy-btn {
+            padding: 6px 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: #3654d1;
+        }
+
+        .copy-all-manual-btn {
+            padding: 12px 30px;
+            background: var(--copy-all);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .copy-all-manual-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .copy-all-manual-btn i {
+            margin-left: 8px;
+        }
+
+        .copy-sub-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 15px auto;
+            display: block;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .copy-sub-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .copy-sub-btn i {
+            margin-left: 8px;
+        }
+
+        .buy-config-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 18px 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, #ff3366, #ff66cc, #cc33ff);
+            background-size: 300%;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 35px rgba(255, 51, 102, 0.7);
+            animation: glow 3s infinite alternate, pulse 2s infinite;
+            transition: all 0.4s;
+            min-width: 340px;
+            text-align: center;
+        }
+
+        .buy-config-btn:hover {
+            transform: scale(1.07);
+            box-shadow: 0 0 60px rgba(204, 51, 255, 0.9);
+        }
+
+        @keyframes glow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.6); }
+            70% { box-shadow: 0 0 0 30px rgba(255, 51, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
+        }
+
+        footer {
+            background: #1a1a2e;
+            color: #aaa;
+            text-align: center;
+            padding: 12px;
+            font-size: 0.8rem;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .compact-grid {
+                grid-template-columns: 1fr;
+            }
+            .buy-config-btn {
+                font-size: 1.2rem;
+                padding: 15px 40px;
+                min-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        const serverConfigs = [
+            "vmess://eyJhZGQiOiIxMDQuMTcuMTIxLjQzIiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImhvc3QiOiJvbWt1enlnaXYuY29tIiwiaWQiOiJlOTk0N2I0Mi0yN2VkLTQwMWUtYjc1ZS1jOWViZDM1N2MwZjMiLCJuZXQiOiJ3cyIsInBhdGgiOiIvIiwicG9ydCI6IjQ0MyIsInBzIjoi8J+HqfCfh6oiLCJzY3kiOiJhdXRvIiwic25pIjoib21rdXp5Z2l2LmNvbSIsInRscyI6InRscyIsInR5cGUiOiItLS0iLCJ2IjoiMiJ9",
+            "vless://cfe91130-a32a-436b-bc9c-c6a45e0094b1@188.114.97.6:443?path=%2F&security=tls&encryption=none&host=ez-aaa09f.ezaccess14b4e93.workers.dev&fp=chrome&type=ws&sni=ez-aaa09f.ezaccess14b4e93.workers.dev#%F0%9F%87%BA%F0%9F%87%B8",
+            "vless://31ad2842-0081-4d9d-8c92-f186fb342a39@104.16.72.70:443?path=%2FeyJqdW5rIjoiQXdEWWZLek8xMzNibjJxIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcmVmaXgiLCJwYW5lbElQcyI6WyJbMjYwMjpmYzU5OmIwOjY0OjpdIl19%3Fed&security=tls&alpn=http%2F1.1&encryption=none&host=noisy-field-e5d2.ehsanmlahory.workers.dev&type=ws&sni=NoIsY-fieLD-E5d2.EhsANMLahoRy.wOrKERs.dEv#%F0%9F%87%BA%F0%9F%87%B8",
+            "vless://e5cc16a6-ea42-46b2-82ae-ad2157e1641b@104.16.72.70:443?path=%2F&security=tls&encryption=none&host=hhlfy.twiladaphne.ndjp.net&type=ws&sni=hhlfy.twiladaphne.ndjp.net#%F0%9F%87%B8%F0%9F%87%AC",
+            "vless://5b9503aa-119b-4288-aa4f-0bbee2b4d5af@188.114.97.6:443?path=%2F%3Fed&security=tls&encryption=none&host=t02.tzteam.online&fp=firefox&type=ws&sni=t02.tzteam.online#%F0%9F%87%AC%F0%9F%87%A7",
+            "trojan://86957ec0-b213-433b-a43b-51f2175e0ec3@45.130.125.126:443?path=%2Fau-do&security=tls&host=space.byu.id.yxls.eu.cc&type=ws&sni=space.byu.id.yxls.eu.cc#%F0%9F%87%A6%F0%9F%87%BA",
+            "vless://61f37706-1b93-4971-88d5-9f7c2231c73c@45.130.125.126:2053?path=%2Fws-vlees&security=tls&alpn=h2%2Chttp%2F1.1&encryption=none&host=gm.PoRLuMa.IR&fp=chrome&type=ws&sni=gm.PoRLuMa.IR#%F0%9F%87%AE%F0%9F%87%B9",
+            "vless://04e28e6c-7a6c-4ec7-bed2-3da8f7c9edce@45.130.125.126:2053?path=%2FeyJqdW5rIjoiTG1BbkpIVHV2S21jNjRNIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOlsiMTQ2LjEwMy4xMTMuMTU4Il19%3Fed&security=tls&alpn=http%2F1.1&encryption=none&host=bpb-expo--10rayly4zy.expo.app&fp=chrome&type=ws&sni=BpB-expO--10RaYly4zY.EXPO.App#%F0%9F%87%B3%F0%9F%87%B1",
+            "trojan://f922fa0f-3311-4368-85ff-cf65e727c854@104.17.121.43:443?path=%2Fbr-orcl&security=tls&host=space.byu.id.yxls.eu.cc&type=ws&sni=space.byu.id.yxls.eu.cc#%F0%9F%87%A7%F0%9F%87%B7",
+            "vless://14b59caf-a196-4ec2-8c70-c7b388062f5b@188.114.97.6:443?path=%2Frdfgtws&security=tls&encryption=none&insecure=0&host=vangoghhh.info&type=ws&allowInsecure=0&sni=vangoghhh.info#%F0%9F%87%A9%F0%9F%87%AA%20Storm",
+            "vless://c2f0a8f0-36fe-4a94-824b-bca271ca642b@188.114.97.6:443?path=%2Fws&security=tls&encryption=none&insecure=0&host=alphacdn.alphashops.shop&fp=chrome&type=ws&allowInsecure=0&sni=alphacdn.alphashops.shop#%F0%9F%87%B9%F0%9F%87%B7%20Storm",
+            "vless://b2f6aa3a-2550-4a1c-b2c0-1c94b1207217@188.114.97.6:443?path=%2Fhdgrbws&security=tls&encryption=none&insecure=0&host=terazhediii.info&fp=chrome&type=ws&allowInsecure=0&sni=terazhediii.info#%F0%9F%87%AB%F0%9F%87%AE%20Storm",
+            "trojan://humanity@45.130.125.126:443?path=%2Fassignment&security=tls&insecure=0&host=www.multiplydose.com&fp=chrome&type=ws&allowInsecure=0&sni=www.multiplydose.com#%F0%9F%87%AB%F0%9F%87%B7%20Storm"
+        ];
+
+        const countryEmojis = ["🇩🇪","🇺🇸","🇺🇸","🇸🇬","🇬🇧","🇦🇺","🇮🇹","🇳🇱","🇧🇷","🇩🇪","🇹🇷","🇫🇮","🇫🇷"];
+
+        const START_TIME = Date.parse('2026-06-18T20:20:00Z');
+        const PERIOD_MS = 7 * 24 * 60 * 60 * 1000;
+        const MAX_VOLUME_GB = 150000;
+
+        const pattern = [0.3194, 0.3946, 0.3605, 0.3062, 0.3953, 0.3326, 0.3767, 0.3047, 0.3891, 0.3209, 0.3504, 0.3961, 0.3116, 0.3837, 0.3450, 0.3078, 0.3721, 0.4000, 0.3147, 0.3589, 0.3279, 0.3907, 0.3000, 0.3674, 0.3860, 0.3349, 0.3140, 0.3791, 0.3465, 0.3093, 0.3977, 0.3225, 0.3651, 0.3023, 0.3806, 0.3411, 0.3163, 0.3922, 0.3550, 0.3295, 0.3736, 0.3101, 0.3992, 0.3357, 0.3527, 0.3062, 0.3853, 0.3690, 0.3310, 0.3008, 0.3775, 0.3442, 0.3124, 0.3969, 0.3233, 0.3574, 0.3853, 0.3178, 0.3938, 0.3953];
+        const patternSumPerMinuteGB = pattern.reduce((a, b) => a + b, 0);
+
+        function calculateUsage() {
+            const now = Date.now();
+            let elapsedMs = now - START_TIME;
+            if (elapsedMs < 0) elapsedMs = 0;
+            if (elapsedMs > PERIOD_MS) elapsedMs = PERIOD_MS;
+
+            const elapsedSeconds = Math.floor(elapsedMs / 1000);
+            const fullMinutes = Math.floor(elapsedSeconds / 60);
+            const secondsInMinute = elapsedSeconds % 60;
+
+            let totalConsumedGB = fullMinutes * patternSumPerMinuteGB;
+            for (let i = 0; i < secondsInMinute; i++) {
+                totalConsumedGB += pattern[i % pattern.length];
+            }
+            totalConsumedGB = Math.min(totalConsumedGB, MAX_VOLUME_GB);
+
+            const consumedGB = totalConsumedGB.toFixed(4);
+            const remainingGB = (MAX_VOLUME_GB - totalConsumedGB).toFixed(4);
+
+            const timeLeftMs = PERIOD_MS - elapsedMs;
+            const days = Math.max(0, Math.floor(timeLeftMs / 86400000));
+            const hours = Math.floor((timeLeftMs % 86400000) / 3600000);
+            const minutes = Math.floor((timeLeftMs % 3600000) / 60000);
+            const seconds = Math.floor((timeLeftMs % 60000) / 1000);
+
+            return { remainingGB, consumedGB, days, hours, minutes, seconds, totalConsumedGB };
+        }
+
+        function copyConfig(index) {
+            const link = serverConfigs[index];
+            navigator.clipboard.writeText(link).then(() => {
+                alert(`✅ لینک ${countryEmojis[index]} کپی شد!`);
+            }).catch(() => {
+                prompt('کپی نشد، دستی کپی کنید:', link);
+            });
+        }
+
+        function copyAllManual() {
+            const allLinks = serverConfigs.join('\n\n');
+            navigator.clipboard.writeText(allLinks).then(() => {
+                alert('تمام لینک‌ها کپی شدند!');
+            }).catch(() => {
+                prompt('کپی نشد، دستی کپی کنید:', allLinks);
+            });
+        }
+
+        function copySubLink() {
+            const subLink = "https://raw.githubusercontent.com/danesh1118/jeskfsjdjje8e6w6wgeodhdkfoehdkjgmfmgmgmgoehejdhbebfoegwurwutwuetiebekdbdkebekejkj/refs/heads/main/sub";
+            navigator.clipboard.writeText(subLink).then(() => {
+                alert('لینک سابسکریپشن کپی شد!');
+            }).catch(() => {
+                prompt('کپی نشد، دستی کپی کنید:', subLink);
+            });
+        }
+
+        function updateDisplay() {
+            const data = calculateUsage();
+            document.getElementById('volume-remaining').textContent = `${data.remainingGB} GB`;
+            document.getElementById('volume-consumed-text').textContent = `مصرف شده: ${data.consumedGB} GB`;
+            document.getElementById('time-remaining').textContent = `${data.days} روز`;
+            document.getElementById('time-detail').textContent = `${data.days} روز، ${data.hours} ساعت، ${data.minutes} دقیقه، ${data.seconds} ثانیه`;
+            document.getElementById('volume-progress').style.width = `${(data.totalConsumedGB / MAX_VOLUME_GB) * 100}%`;
+        }
+
+        function openSupport() { window.open('https://t.me/Leviko_pubg_bot', '_blank'); }
+        function addToApp() { alert('از دکمه‌های کپی استفاده کنید!'); }
+        function showFAQ() { alert('سوالات متداول...'); }
+        function showTutorial() { alert('آموزش استفاده...'); }
+        function buyDedicatedConfig() { window.open('https://t.me/Leviko_pubg_bot', '_blank'); }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDisplay();
+            setInterval(updateDisplay, 1000);
+        });
+    </script>
+
+    <div class="container">
+        <header>
+            <h1>پنل V2Ray - نسخه خریداری شده</h1>
+            <p>مدیریت سریع اشتراک و سرورها</p>
+        </header>
+
+        <div class="main-content">
+            <div class="compact-grid">
+                <div class="card">
+                    <h3>حجم باقی‌مانده</h3>
+                    <div class="value" id="volume-remaining">50000.0000 GB</div>
+                    <div class="progress-bar"><div class="progress" id="volume-progress"></div></div>
+                    <div class="subtext" id="volume-consumed-text">مصرف شده: 0.0000 GB</div>
+                </div>
+
+                <div class="card">
+                    <h3>زمان باقی‌مانده اشتراک</h3>
+                    <div class="value" id="time-remaining">28 روز</div>
+                    <div class="subtext" id="time-detail">28 روز، 22 ساعت، 15 دقیقه، 0 ثانیه</div>
+                </div>
+
+                <div class="card">
+                    <h3>وضعیت</h3>
+                    <div class="value status-active">فعال</div>
+                    <div class="subtext">سرویس در حال کار</div>
+                </div>
+
+                <div class="card">
+                    <h3>سرعت متوسط</h3>
+                    <div class="value">138 Mbps</div>
+                    <div class="subtext">24 ساعت گذشته</div>
+                </div>
+            </div>
+
+            <div class="actions-row">
+                <button class="btn-small btn-primary" onclick="openSupport()"><i class="fas fa-headset"></i> پشتیبانی</button>
+                <button class="btn-small btn-success" onclick="addToApp()"><i class="fas fa-mobile-alt"></i> اضافه به برنامه</button>
+                <button class="btn-small btn-warning" onclick="showFAQ()"><i class="fas fa-question-circle"></i> سوالات متداول</button>
+                <button class="btn-premium" onclick="showTutorial()"><i class="fas fa-book-open"></i> آموزش استفاده</button>
+            </div>
+
+            <button class="buy-config-btn" onclick="buyDedicatedConfig()">
+                <i class="fas fa-rocket"></i> خرید کانفیگ اختصاصی
+            </button>
+
+            <div class="compact-grid">
+                <div class="card servers-card">
+                    <h3>لیست سرورها</h3>
+
+                    <button class="copy-all-manual-btn" onclick="copyAllManual()">
+                        <i class="fas fa-copy"></i> کپی همه لینک‌ها
+                    </button>
+
+                    <button class="copy-sub-btn" onclick="copySubLink()">
+                        <i class="fas fa-link"></i> کپی لینک سابسکریپشن
+                    </button>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>نام</th><th>کشور</th><th>پینگ</th><th>بار</th><th>وضعیت</th><th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Storm ۱</td><td><img src="https://flagcdn.com/de.svg" class="flag"> آلمان</td><td>50 ms</td><td>20%</td><td><span class="status-active">فعال</span></td><td><button class="copy-btn" onclick="copyConfig(0)">کپی لینک</button></td></tr>
+                            <tr><td>Storm ۲</td><td><img src="https://flagcdn.com/us.svg" class="flag"> آمریکا</td><td>140 ms</td><td>35%</td><td><span class="status-active">فعال</span></td><td><button class="copy-btn" onclick="copyConfig(1)">کپی لینک</button></td></tr>
+                            <tr><td>Storm ۳</td><td><img src="https://flagcdn.com/us.svg" class="flag"> آمریکا</td><td>145 ms</td><td>36%</td><td><span class="status-active">فعال</span></td><td><button class="copy-btn" onclick="copyConfig(2)">کپی لینک</button></td></tr>
+                            <tr><td>Storm ۴</td><td><img src="https://flagcdn.com/sg.svg" class="flag"> سنگاپور</td><td>120 ms</td><td>32%</td><td><span class="status-active">فعال</span></td><td><button class="copy-btn" onclick="copyConfig(3)">کپی لینک</button></td></tr>
+                            <tr><td>Storm ۵</td><td><img src="https://flagcdn.com/gb.svg" class="flag"> بریتانیا</td><td>110 ms</td><td>30%</td><td><span class="status-active">فعال</span></td><td><button class="copy-btn" onclick="copyConfig(4)">کپی لینک</button></td></tr>
+                            <tr><td>Storm ۶</td><td><img src="https://flagcdn.com/au.svg" class="flag"> استرالیا</td><td>160 ms</td><td>38%</td><td><span class="status-active">فعال</span></td><td><button class="copy-btn" onclick="copyConfig(5)">کپی لینک</button></td></tr>
+                            <tr><td>Storm ۷</td><td><img src="https://flagcdn.com/it.svg" class="flag"> ایتالیا</td><td>90 ms</td><td>27%</td><td><span class="status-active">فعال</span></td><td><button class="copy-btn" onclick="copyConfig(6)">کپی لینک</button></td></tr>
+                            <tr><td>Storm ۸</td><td><img src="https://flagcdn.com/nl.svg" class="flag"> هلند</td><td>70 ms</td><td>24%</td><td><span class="status-active">فعال</span></td><td><button class="copy-btn" onclick="copyConfig(7)">کپی لینک</button></td></tr>
+                            <tr><td>Storm ۹</td><td><img src="https://flagcdn.com/br.svg" class="flag"> برزیل</td><td>155 ms</td><td>40%</td><td><span class="status-active">فعال</span></td><td><button class="copy-btn" onclick="copyConfig(8)">کپی لینک</button></td></tr>
+                            <tr><td>Storm ۱۰</td><td><img src="https://flagcdn.com/de.svg" class="flag"> آلمان</td><td>50 ms</td><td>20%</td><td><span class="status-active">فعال</span></td><td><button class="copy-btn" onclick="copyConfig(9)">کپی لینک</button></td></tr>
+                            <tr><td>Storm ۱۱</td><td><img src="https://flagcdn.com/tr.svg" class="flag"> ترکیه</td><td>80 ms</td><td>26%</td><td><span class="status-active">فعال</span></td><td><button class="copy-btn" onclick="copyConfig(10)">کپی لینک</button></td></tr>
+                            <tr><td>Storm ۱۲</td><td><img src="https://flagcdn.com/fi.svg" class="flag"> فنلاند</td><td>95 ms</td><td>28%</td><td><span class="status-active">فعال</span></td><td><button class="copy-btn" onclick="copyConfig(11)">کپی لینک</button></td></tr>
+                            <tr><td>Storm ۱۳</td><td><img src="https://flagcdn.com/fr.svg" class="flag"> فرانسه</td><td>85 ms</td><td>25%</td><td><span class="status-active">فعال</span></td><td><button class="copy-btn" onclick="copyConfig(12)">کپی لینک</button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>آخرین آپدیت 2026 = پشتیبانی تلگرام: Cloudflare ⚡</p>
+        </footer>
+    </div>
+</body>
+  </html>
