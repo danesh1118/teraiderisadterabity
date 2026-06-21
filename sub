@@ -4,11 +4,11 @@ vless://dc8eccdb-ecfa-435f-9ac1-5dc4882e7b51@188.114.97.6:80?path=%2Fhttp&securi
 
 vless://3a8aa3ad-d125-4285-8542-3a1832187f5d@188.114.97.6:443?path=%2F&security=tls&encryption=none&host=alireza10.karamzade546alireza.workers.dev&fp=chrome&type=ws&sni=alireza10.karamzade546alireza.workers.dev#%F0%9F%87%BA%F0%9F%87%B8
 
-trojan://6c862415-30d2-4813-8e49-42e99a0bd415@104.17.121.43:443?path=%2Fus-gllc&security=tls&host=space.byu.id.yxls.eu.cc&type=ws&sni=space.byu.id.yxls.eu.cc#%F0%9F%87%BA%F0%9F%87%B8
+trojan://6c862415-30d2-4813-8e49-42e99a0bd415@104.16.72.70:443?path=%2Fus-gllc&security=tls&host=space.byu.id.yxls.eu.cc&type=ws&sni=space.byu.id.yxls.eu.cc#%F0%9F%87%BA%F0%9F%87%B8
 
-vless://a3ca2f6f-3905-406b-b15e-873bed123033@104.17.121.43:80?path=%2Fvless&security=none&encryption=none&host=education.panelvps.eu.org&type=ws#%F0%9F%87%B8%F0%9F%87%AC
+vless://a3ca2f6f-3905-406b-b15e-873bed123033@104.16.72.70:80?path=%2Fvless&security=none&encryption=none&host=education.panelvps.eu.org&type=ws#%F0%9F%87%B8%F0%9F%87%AC
 
-vless://0d27ab04-4523-4ae0-94b0-3e14c2089756@104.17.121.43:443?path=%2F&security=tls&alpn=h2%2Chttp%2F1.1&encryption=none&host=hadi.getfreecp.com&fp=chrome&type=ws&sni=hadi.getfreecp.com#%F0%9F%87%B5%F0%9F%87%B1
+vless://0d27ab04-4523-4ae0-94b0-3e14c2089756@104.16.72.70:443?path=%2F&security=tls&alpn=h2%2Chttp%2F1.1&encryption=none&host=hadi.getfreecp.com&fp=chrome&type=ws&sni=hadi.getfreecp.com#%F0%9F%87%B5%F0%9F%87%B1
 
 vless://b26ec0f4-6c92-45f7-b287-2a664abf1963@45.130.125.126:443?path=%2F&security=tls&alpn=h2%2Chttp%2F1.1&encryption=none&fp=chrome&type=ws&sni=server-ir-2.ariyuz.org#%F0%9F%87%AB%F0%9F%87%AE
 
